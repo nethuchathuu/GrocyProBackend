@@ -4,7 +4,14 @@ const path = require("path");
 
 let db;
 try {
-  const serviceAccount = require("../grocypro-a1fc6-firebase-adminsdk-fbsvc-bcb1e947d9.json");
+  let serviceAccount;
+  if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+    serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+  } else {
+    // Fallback for local development
+    serviceAccount = require("../grocypro-a1fc6-firebase-adminsdk-fbsvc-bcb1e947d9.json");
+  }
+
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
   });

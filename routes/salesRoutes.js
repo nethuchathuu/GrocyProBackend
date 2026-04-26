@@ -85,7 +85,7 @@ router.get("/", async (req, res) => {
     res.json(sales);
   } catch (err) {
     console.error("GET /api/sales error:", err);
-    res.status(500).json({ error: "Failed to fetch sales" });
+    res.status(500).json({ error: err.message });
   }
 });
 

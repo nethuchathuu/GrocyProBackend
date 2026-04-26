@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
     res.json(discounts);
   } catch (error) {
     console.error('Error fetching discounts:', error);
-    res.status(500).json({ error: 'Server error fetching discounts' });
+    res.status(500).json({ error: error.message });
   }
 });
 

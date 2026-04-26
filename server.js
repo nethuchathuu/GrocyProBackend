@@ -11,7 +11,13 @@ const discountRoutes = require("./routes/discountRoutes");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://grocypro.netlify.app",
+    "http://localhost:5173"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Serve uploaded profile pictures

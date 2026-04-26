@@ -4,21 +4,10 @@ const path = require("path");
 
 let db;
 try {
-  // Automatically initializes if GOOGLE_APPLICATION_CREDENTIALS exists in environment variables
-  // or if FIREBASE_SERVICE_ACCOUNT JSON string is supplied:
-  if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-    const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount)
-    });
-  } else if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-    const serviceAccount = require(path.resolve(__dirname, "..", process.env.GOOGLE_APPLICATION_CREDENTIALS));
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount)
-    });
-  } else {
-    admin.initializeApp();
-  }
+  const serviceAccount = require("../grocypro-a1fc6-firebase-adminsdk-fbsvc-bcb1e947d9.json");
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
   db = admin.firestore();
   console.log("Connected to Firebase Firestore");
 } catch (error) {

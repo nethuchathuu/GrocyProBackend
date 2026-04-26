@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     res.json(products);
   } catch (err) {
     console.error("GET /api/products error:", err);
-    res.status(500).json({ error: "Failed to fetch products" });
+    res.status(500).json({ error: err.message });
   }
 });
 
